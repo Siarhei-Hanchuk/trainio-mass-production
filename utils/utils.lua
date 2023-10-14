@@ -1,3 +1,7 @@
+SIZE_FACTOR = 9
+SPEED_FACTOR = 100
+
+
 local multipliers = {
     K = 10^3,
     M = 10^6,

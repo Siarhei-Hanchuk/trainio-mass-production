@@ -1,9 +1,9 @@
-require("utils")
+require("utils.scale")
 
-for i=1,3 do
-    local machine = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-" .. tostring(i)])
-    machine.crafting_speed = machine.crafting_speed * 100
-    update_energy_usage(machine, 100)
+for i=1,1 do
+    local entity, recipe, item = create_big_version("assembling-machine-" .. tostring(i), "assembling-machine")
+    recipe.enabled = true
+    entity.next_upgrade = nil
 
-    data:extend{machine}
+    data:extend{entity, recipe, item}
 end
