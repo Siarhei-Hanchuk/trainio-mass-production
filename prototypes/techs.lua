@@ -1,6 +1,7 @@
 techs = {
     'automation', 'logistics', 'steel-processing', 'automation', 'railway', 'automated-rail-transportation',
-    'optics', 'electric-energy-distribution-1', 'miniloader', 'engine',
+    'optics', 'electric-energy-distribution-1', 'miniloader', 'engine', 'rail-signals',
+    -- 'ultra-fast-configurable-inserter'
 }
 
 local ingredients = { { "automation-science-pack", 1, }, }
