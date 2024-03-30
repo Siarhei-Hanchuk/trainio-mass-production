@@ -53,6 +53,18 @@ function multiply_energy(value, modifier)
 end
 
 
+function replace_unlocked_recipe(recipeName, newRecipeName)
+    for _, tech in pairs(data.raw.technology) do
+        if tech.effects then
+            for _, effect in ipairs(tech.effects) do
+                if effect.type == "unlock-recipe" and effect.recipe == recipeName then
+                    effect.recipe = newRecipeName
+                end
+            end
+        end
+    end
+end
+
 function replace_entity_with_big(entityType, entityName)
     local prefix = "-big"
     local copiedEntity = table.deepcopy(data.raw[entityType][entityName])
@@ -65,6 +77,8 @@ function replace_entity_with_big(entityType, entityName)
         originalRecipe.normal.enabled = false
         originalRecipe.expensive.enabled = false
     end
+
+    replace_unlocked_recipe(entityName, entityName .. prefix)
 
     local copiedRecipe = table.deepcopy(data.raw["recipe"][entityName])
 
