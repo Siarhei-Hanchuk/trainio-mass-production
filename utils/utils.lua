@@ -54,20 +54,22 @@ end
 
 
 function copy_entity(entityType, entityName)
+    local prefix = "-big"
     local copiedEntity = table.deepcopy(data.raw[entityType][entityName])
+    copiedEntity.name = copiedEntity.name .. prefix
 
     local copiedRecipe = table.deepcopy(data.raw["recipe"][entityName])
-    copiedRecipe.name = copiedRecipe.name .. "-copy"
+    copiedRecipe.name = copiedRecipe.name .. prefix
     if copiedRecipe.normal == nil then
-        copiedRecipe.result = copiedRecipe.result .. "-copy"
+        copiedRecipe.result = copiedRecipe.result .. prefix
     else
-        copiedRecipe.normal.result = copiedRecipe.normal.result .. "-copy"
-        copiedRecipe.expensive.result = copiedRecipe.expensive.result .. "-copy"
+        copiedRecipe.normal.result = copiedRecipe.normal.result .. prefix
+        copiedRecipe.expensive.result = copiedRecipe.expensive.result .. prefix
     end
 
     local copiedItem = table.deepcopy(data.raw["item"][entityName])
-    copiedItem.name = copiedItem.name .. "-copy"
-    copiedItem.place_result = copiedItem.place_result .. "-copy"
+    copiedItem.name = copiedItem.name .. prefix
+    copiedItem.place_result = copiedItem.place_result .. prefix
 
     return copiedEntity, copiedRecipe, copiedItem
 end
