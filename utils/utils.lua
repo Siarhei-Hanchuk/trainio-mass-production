@@ -51,3 +51,23 @@ function multiply_energy(value, modifier)
 
     return tostring(new_value) .. multiplier .. glob
 end
+
+function copy_recepi(recipeName, postfix)
+    local recipe = table.deepcopy(data.raw["recipe"][recipeName])
+    recipe.name = recipe.name .. "-" .. postfix
+
+    if recipe.normal == nil then
+        recipe.result = recipe.result .. "-" .. postfix
+    else
+        recipe.normal.result = recipe.normal.result .. "-" .. postfix
+        recipe.expensive.result = recipe.expensive.result .. "-" .. postfix
+    end
+    return recipe
+end
+
+function copy_item(itemName, prefix)
+    local item = table.deepcopy(data.raw["item"][itemName])
+    item.name = item.name .. "-" .. prefix
+    item.place_result = item.place_result .. "-" .. prefix
+    return item
+end

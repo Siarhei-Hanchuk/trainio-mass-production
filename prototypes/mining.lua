@@ -2,51 +2,36 @@ require("utils.utils")
 
 local BURNER_MINER_PERFORMANCE = 200
 
-local burnerMiner = table.deepcopy(data.raw["mining-drill"]["burner-mining-drill"])
-local electricMiner = table.deepcopy(data.raw["mining-drill"]["electric-mining-drill"])
+local function createBigMiner(minerName, performanceMultiplier, radiusMultiplier)
+    local miner = table.deepcopy(data.raw["mining-drill"][minerName])
+    miner.name = miner.name .. "-big"
+    miner.mining_speed = miner.mining_speed * performanceMultiplier
+    miner.resource_searching_radius = miner.resource_searching_radius * radiusMultiplier
+    update_energy_usage(miner, performanceMultiplier)
+
+    local minerItem = table.deepcopy(data.raw["item"][minerName])
+    minerItem.name = minerItem.name .. "-big"
+    minerItem.place_result = minerItem.place_result .. "-big"
+
+    local minerRecipe = table.deepcopy(data.raw["recipe"][minerName])
+    minerRecipe.name = minerRecipe.name .. "-big"
+
+    if minerRecipe.normal == nil then
+        minerRecipe.result = minerRecipe.result .. "-big"
+    else
+        minerRecipe.normal.result = minerRecipe.normal.result .. "-big"
+        minerRecipe.expensive.result = minerRecipe.expensive.result .. "-big"
+    end
+
+    return miner, minerItem, minerRecipe
+end
 
 -- burner-mining-drill
-burnerMiner.name = burnerMiner.name .. "-big"
-burnerMiner.mining_speed = burnerMiner.mining_speed * BURNER_MINER_PERFORMANCE
-burnerMiner.resource_searching_radius = burnerMiner.resource_searching_radius * 2
-update_energy_usage(burnerMiner, BURNER_MINER_PERFORMANCE)
-
-burnerMiner.radius_visualisation_picture = table.deepcopy(electricMiner.radius_visualisation_picture)
-
-local burnerMinerItem = table.deepcopy(data.raw["item"]["burner-mining-drill"])
-burnerMinerItem.name = burnerMinerItem.name .. "-big"
-burnerMinerItem.place_result = burnerMinerItem.place_result .. "-big"
-
-local burnerMinerRecipe = table.deepcopy(data.raw["recipe"]["burner-mining-drill"])
-burnerMinerRecipe.name = burnerMinerRecipe.name .. "-big"
-
-if burnerMinerRecipe.normal == nil then
-    burnerMinerRecipe.result = burnerMinerRecipe.result .. "-big"
-else
-    burnerMinerRecipe.normal.result = burnerMinerRecipe.normal.result .. "-big"
-    burnerMinerRecipe.expensive.result = burnerMinerRecipe.expensive.result .. "-big"
-end
+local burnerMiner, burnerMinerItem, burnerMinerRecipe = createBigMiner("burner-mining-drill", BURNER_MINER_PERFORMANCE, 2)
+burnerMiner.radius_visualisation_picture = table.deepcopy(data.raw["mining-drill"]["electric-mining-drill"].radius_visualisation_picture)
 
 -- electric-mining-drill
-electricMiner.name = electricMiner.name .. "-big"
-electricMiner.mining_speed = electricMiner.mining_speed * BURNER_MINER_PERFORMANCE * 2
-electricMiner.resource_searching_radius = electricMiner.resource_searching_radius * 5
-update_energy_usage(electricMiner, BURNER_MINER_PERFORMANCE * 2)
-
-local electricMinerItem = table.deepcopy(data.raw["item"]["electric-mining-drill"])
-electricMinerItem.name = electricMinerItem.name .. "-big"
-electricMinerItem.place_result = electricMinerItem.place_result .. "-big"
-
-local electricMinerRecipe = table.deepcopy(data.raw["recipe"]["electric-mining-drill"])
-electricMinerRecipe.name = electricMinerRecipe.name .. "-big"
-
-if electricMinerRecipe.normal == nil then
-    electricMinerRecipe.result = electricMinerRecipe.result .. "-big"
-else
-    electricMinerRecipe.normal.result = electricMinerRecipe.normal.result .. "-big"
-    electricMinerRecipe.expensive.result = electricMinerRecipe.expensive.result .. "-big"
-end
-
+local electricMiner, electricMinerItem, electricMinerRecipe = createBigMiner("electric-mining-drill", BURNER_MINER_PERFORMANCE * 2, 5)
 
 data:extend{
     burnerMiner, burnerMinerItem, burnerMinerRecipe,
