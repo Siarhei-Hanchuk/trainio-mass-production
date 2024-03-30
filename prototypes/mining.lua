@@ -4,7 +4,7 @@ local BURNER_MINER_PERFORMANCE = 200
 
 local function createBigMiner(minerName, performanceMultiplier, radiusMultiplier)
     replace_entity_with_big("mining-drill", minerName)
-    local miner = table.deepcopy(data.raw["mining-drill"][minerName])
+    local miner = table.deepcopy(data.raw["mining-drill"][minerName .. "-big"])
 
     miner.mining_speed = miner.mining_speed * performanceMultiplier
     miner.resource_searching_radius = miner.resource_searching_radius * radiusMultiplier

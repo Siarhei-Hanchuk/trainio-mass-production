@@ -18,7 +18,7 @@ end
 
 function create_big_version(group, name)
     replace_entity_with_big(group, name)
-    local entity = table.deepcopy(data.raw[group][name])
+    local entity = table.deepcopy(data.raw[group][name .. "-big"])
 
     entity.fast_replaceable_group = entity.fast_replaceable_group .. "-big"
     entity.minable.result = entity.minable.result .. "-big"
