@@ -1,13 +1,10 @@
 require("utils.scale")
 
-replace_entity_with_big("furnace", "stone-furnace")
-replace_entity_with_big("furnace", "steel-furnace")
-replace_entity_with_big("furnace", "electric-furnace")
+stoneFurnace = create_big_version("furnace", "stone-furnace")
+steelFurnace = create_big_version("furnace", "steel-furnace")
+electricFurnace = create_big_version("furnace", "electric-furnace")
 
-local stoneFurnace = table.deepcopy(data.raw["furnace"]["stone-furnace-big"])
 stoneFurnace.next_upgrade = "steel-furnace-big"
-local steelFurnace = table.deepcopy(data.raw["furnace"]["steel-furnace-big"])
-local electricFurnace = table.deepcopy(data.raw["furnace"]["electric-furnace-big"])
 
 table.insert(data.raw.technology["advanced-material-processing"].effects, {
     type = "unlock-recipe",
