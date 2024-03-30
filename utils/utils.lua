@@ -70,6 +70,8 @@ function replace_entity_with_big(entityType, entityName)
     local copiedEntity = table.deepcopy(data.raw[entityType][entityName])
     copiedEntity.name = copiedEntity.name .. prefix
 
+    copiedEntity.minable.result = copiedEntity.name
+
     local originalRecipe = table.deepcopy(data.raw["recipe"][entityName])
     if originalRecipe.normal == nil then
         originalRecipe.enabled = false

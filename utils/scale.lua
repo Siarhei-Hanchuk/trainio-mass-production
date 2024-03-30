@@ -21,7 +21,6 @@ function create_big_version(group, name)
     local entity = table.deepcopy(data.raw[group][name .. "-big"])
 
     entity.fast_replaceable_group = entity.fast_replaceable_group .. "-big"
-    entity.minable.result = entity.minable.result .. "-big"
     scale_size(entity, SIZE_FACTOR, SPEED_FACTOR)
     entity.crafting_speed = entity.crafting_speed * SPEED_FACTOR
     update_energy_usage(entity, SPEED_FACTOR)
