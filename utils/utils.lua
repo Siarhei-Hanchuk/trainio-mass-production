@@ -52,22 +52,22 @@ function multiply_energy(value, modifier)
     return tostring(new_value) .. multiplier .. glob
 end
 
-function copy_recepi(recipeName, postfix)
-    local recipe = table.deepcopy(data.raw["recipe"][recipeName])
-    recipe.name = recipe.name .. "-" .. postfix
 
-    if recipe.normal == nil then
-        recipe.result = recipe.result .. "-" .. postfix
+function copy_entity(entityType, entityName)
+    local copiedEntity = table.deepcopy(data.raw[entityType][entityName])
+
+    local copiedRecipe = table.deepcopy(data.raw["recipe"][entityName])
+    copiedRecipe.name = copiedRecipe.name .. "-copy"
+    if copiedRecipe.normal == nil then
+        copiedRecipe.result = copiedRecipe.result .. "-copy"
     else
-        recipe.normal.result = recipe.normal.result .. "-" .. postfix
-        recipe.expensive.result = recipe.expensive.result .. "-" .. postfix
+        copiedRecipe.normal.result = copiedRecipe.normal.result .. "-copy"
+        copiedRecipe.expensive.result = copiedRecipe.expensive.result .. "-copy"
     end
-    return recipe
-end
 
-function copy_item(itemName, prefix)
-    local item = table.deepcopy(data.raw["item"][itemName])
-    item.name = item.name .. "-" .. prefix
-    item.place_result = item.place_result .. "-" .. prefix
-    return item
+    local copiedItem = table.deepcopy(data.raw["item"][entityName])
+    copiedItem.name = copiedItem.name .. "-copy"
+    copiedItem.place_result = copiedItem.place_result .. "-copy"
+
+    return copiedEntity, copiedRecipe, copiedItem
 end

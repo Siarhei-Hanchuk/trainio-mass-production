@@ -7,23 +7,11 @@ local offshorePump = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"])
 local pipe = table.deepcopy(data.raw["pipe"]["pipe"])
 local pipeToGround = table.deepcopy(data.raw["pipe-to-ground"]["pipe-to-ground"])
 
-boiler.name = boiler.name .. "-big"
-steamEngine.name = steamEngine.name .. "-big"
-offshorePump.name = offshorePump.name .. "-big"
-pipe.name = pipe.name .. "-big"
-pipeToGround.name = pipeToGround.name .. "-big"
-
-boilerRecipe = copy_recepi("boiler", "big")
-steamEngineRecipe = copy_recepi("steam-engine", "big")
-offshorePumpRecipe = copy_recepi("offshore-pump", "big")
-pipeRecipe = copy_recepi("pipe", "big")
-pipeToGroundRecipe = copy_recepi("pipe-to-ground", "big")
-
-boilerItem = copy_item("boiler", "big")
-steamEngineItem = copy_item("steam-engine", "big")
-offshorePumpItem = copy_item("offshore-pump", "big")
-pipeItem = copy_item("pipe", "big")
-pipeToGroundItem = copy_item("pipe-to-ground", "big")
+local boiler, boilerRecipe, boilerItem = copy_entity("boiler", "boiler")
+local steamEngine, steamEngineRecipe, steamEngineItem = copy_entity("generator", "steam-engine")
+local offshorePump, offshorePumpRecipe, offshorePumpItem = copy_entity("offshore-pump", "offshore-pump")
+local pipe, pipeRecipe, pipeItem = copy_entity("pipe", "pipe")
+local pipeToGround, pipeToGroundRecipe, pipeToGroundItem = copy_entity("pipe-to-ground", "pipe-to-ground")
 
 update_energy_consumption(boiler, 100 * 5)
 
