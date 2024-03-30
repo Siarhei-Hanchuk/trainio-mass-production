@@ -1,17 +1,16 @@
 require("utils.utils")
 
+replace_entity_with_big("boiler", "boiler")
+replace_entity_with_big("generator", "steam-engine")
+replace_entity_with_big("offshore-pump", "offshore-pump")
+replace_entity_with_big("pipe", "pipe")
+replace_entity_with_big("pipe-to-ground", "pipe-to-ground")
 
-local boiler = table.deepcopy(data.raw["boiler"]["boiler"])
-local steamEngine = table.deepcopy(data.raw["generator"]["steam-engine"])
-local offshorePump = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"])
-local pipe = table.deepcopy(data.raw["pipe"]["pipe"])
-local pipeToGround = table.deepcopy(data.raw["pipe-to-ground"]["pipe-to-ground"])
-
-local boiler, boilerRecipe, boilerItem = copy_entity("boiler", "boiler")
-local steamEngine, steamEngineRecipe, steamEngineItem = copy_entity("generator", "steam-engine")
-local offshorePump, offshorePumpRecipe, offshorePumpItem = copy_entity("offshore-pump", "offshore-pump")
-local pipe, pipeRecipe, pipeItem = copy_entity("pipe", "pipe")
-local pipeToGround, pipeToGroundRecipe, pipeToGroundItem = copy_entity("pipe-to-ground", "pipe-to-ground")
+local boiler = table.deepcopy(data.raw["boiler"]["boiler-big"])
+local steamEngine = table.deepcopy(data.raw["generator"]["steam-engine-big"])
+local offshorePump = table.deepcopy(data.raw["offshore-pump"]["offshore-pump-big"])
+local pipe = table.deepcopy(data.raw["pipe"]["pipe-big"])
+local pipeToGround = table.deepcopy(data.raw["pipe-to-ground"]["pipe-to-ground-big"])
 
 update_energy_consumption(boiler, 100 * 5)
 
@@ -26,9 +25,9 @@ offshorePump.fluid_box.height = (offshorePump.fluid_box.height or 2) * 100
 boiler.fluid_box.height = (boiler.fluid_box.height or 1) * 100
 
 data:extend{
-    boiler, boilerRecipe, boilerItem,
-    steamEngine, steamEngineRecipe, steamEngineItem,
-    offshorePump, offshorePumpRecipe, offshorePumpItem,
-    pipe, pipeRecipe, pipeItem,
-    pipeToGround, pipeToGroundRecipe, pipeToGroundItem,
+    boiler,
+    steamEngine,
+    offshorePump,
+    pipe,
+    pipeToGround,
 }

@@ -1,9 +1,13 @@
 require("utils.scale")
 
-local stoneFurnace, stoneFurnaceRecipe, stoneFurnaceItem = create_big_version("stone-furnace", "furnace")
+replace_entity_with_big("furnace", "stone-furnace")
+replace_entity_with_big("furnace", "steel-furnace")
+replace_entity_with_big("furnace", "electric-furnace")
+
+local stoneFurnace = table.deepcopy(data.raw["furnace"]["stone-furnace"])
 stoneFurnace.next_upgrade = "steel-furnace-big"
-local steelFurnace, steelFurnaceRecipe, steelFurnaceItem = create_big_version("steel-furnace", "furnace")
-local electricFurnace, electricFurnaceRecipe, electricFurnaceItem = create_big_version("electric-furnace", "furnace")
+local steelFurnace = table.deepcopy(data.raw["furnace"]["steel-furnace"])
+local electricFurnace = table.deepcopy(data.raw["furnace"]["electric-furnace"])
 
 table.insert(data.raw.technology["advanced-material-processing"].effects, {
     type = "unlock-recipe",
@@ -17,7 +21,7 @@ table.insert(data.raw.technology["advanced-material-processing-2"].effects, {
 
 
 data:extend{
-    stoneFurnace, stoneFurnaceRecipe, stoneFurnaceItem,
-    steelFurnace, steelFurnaceRecipe, steelFurnaceItem,
-    electricFurnace, electricFurnaceRecipe, electricFurnaceItem
+    stoneFurnace,
+    steelFurnace,
+    electricFurnace,
 }

@@ -53,12 +53,21 @@ function multiply_energy(value, modifier)
 end
 
 
-function copy_entity(entityType, entityName)
+function replace_entity_with_big(entityType, entityName)
     local prefix = "-big"
     local copiedEntity = table.deepcopy(data.raw[entityType][entityName])
     copiedEntity.name = copiedEntity.name .. prefix
 
+    local originalRecipe = table.deepcopy(data.raw["recipe"][entityName])
+    if originalRecipe.normal == nil then
+        originalRecipe.enabled = false
+    else
+        originalRecipe.normal.enabled = false
+        originalRecipe.expensive.enabled = false
+    end
+
     local copiedRecipe = table.deepcopy(data.raw["recipe"][entityName])
+
     copiedRecipe.name = copiedRecipe.name .. prefix
     if copiedRecipe.normal == nil then
         copiedRecipe.result = copiedRecipe.result .. prefix
@@ -71,5 +80,5 @@ function copy_entity(entityType, entityName)
     copiedItem.name = copiedItem.name .. prefix
     copiedItem.place_result = copiedItem.place_result .. prefix
 
-    return copiedEntity, copiedRecipe, copiedItem
+    data:extend{copiedEntity, originalRecipe, copiedRecipe, copiedItem}
 end

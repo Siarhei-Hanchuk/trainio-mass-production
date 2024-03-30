@@ -1,8 +1,8 @@
 require("utils.scale")
 
 for i=1,1 do
-    local entity, recipe, item = create_big_version("assembling-machine-" .. tostring(i), "assembling-machine")
+    local entity = create_big_version("assembling-machine", "assembling-machine-" .. tostring(i))
     entity.next_upgrade = nil
 
-    data:extend{entity, recipe, item}
+    data:extend{entity}
 end

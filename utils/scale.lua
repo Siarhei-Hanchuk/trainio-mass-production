@@ -16,9 +16,9 @@ function scale_size(entity, size_factor, speed_factor)
     adjust_visuals(entity, size_factor, 1 / speed_factor)
 end
 
-function create_big_version(name, group)
+function create_big_version(group, name)
+    replace_entity_with_big(group, name)
     local entity = table.deepcopy(data.raw[group][name])
-    local entity, recipe, item = copy_entity(group, name)
 
     entity.fast_replaceable_group = entity.fast_replaceable_group .. "-big"
     entity.minable.result = entity.minable.result .. "-big"
@@ -26,5 +26,5 @@ function create_big_version(name, group)
     entity.crafting_speed = entity.crafting_speed * SPEED_FACTOR
     update_energy_usage(entity, SPEED_FACTOR)
 
-    return entity, recipe, item
+    return entity
 end
