@@ -1,16 +1,10 @@
 require("utils.utils")
 
-replace_entity_with_big("boiler", "boiler")
-replace_entity_with_big("generator", "steam-engine")
-replace_entity_with_big("offshore-pump", "offshore-pump")
-replace_entity_with_big("pipe", "pipe")
-replace_entity_with_big("pipe-to-ground", "pipe-to-ground")
-
-local boiler = table.deepcopy(data.raw["boiler"]["boiler-big"])
-local steamEngine = table.deepcopy(data.raw["generator"]["steam-engine-big"])
-local offshorePump = table.deepcopy(data.raw["offshore-pump"]["offshore-pump-big"])
-local pipe = table.deepcopy(data.raw["pipe"]["pipe-big"])
-local pipeToGround = table.deepcopy(data.raw["pipe-to-ground"]["pipe-to-ground-big"])
+local boiler = table.deepcopy(data.raw["boiler"]["boiler"])
+local steamEngine = table.deepcopy(data.raw["generator"]["steam-engine"])
+local offshorePump = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"])
+local pipe = table.deepcopy(data.raw["pipe"]["pipe"])
+local pipeToGround = table.deepcopy(data.raw["pipe-to-ground"]["pipe-to-ground"])
 
 update_energy_consumption(boiler, 100 * 5)
 
@@ -24,22 +18,11 @@ offshorePump.fluid_box.height = (offshorePump.fluid_box.height or 2) * 100
 
 boiler.fluid_box.height = (boiler.fluid_box.height or 1) * 100
 
-local boilerRecipe = table.deepcopy(data.raw["recipe"]["boiler-big"])
-local steamEngineRecipe = table.deepcopy(data.raw["recipe"]["steam-engine-big"])
-local offshorePumpRecipe = table.deepcopy(data.raw["recipe"]["offshore-pump-big"])
-local pipeToGroundRecipe = table.deepcopy(data.raw["recipe"]["pipe-to-ground-big"])
-
-replace_ingredient_in_recipe(boilerRecipe, "pipe", "pipe-big")
-replace_ingredient_in_recipe(boilerRecipe, "stone-furnace", "stone-furnace-big")
-replace_ingredient_in_recipe(steamEngineRecipe, "pipe", "pipe-big")
-replace_ingredient_in_recipe(offshorePumpRecipe, "pipe", "pipe-big")
-replace_ingredient_in_recipe(pipeToGroundRecipe, "pipe", "pipe-big")
-
 
 data:extend{
-    boiler, boilerRecipe,
-    steamEngine, steamEngineRecipe,
-    offshorePump, offshorePumpRecipe,
+    boiler,
+    steamEngine,
+    offshorePump,
     pipe,
-    pipeToGround, pipeToGroundRecipe,
+    pipeToGround,
 }

@@ -1,0 +1,28 @@
+{
+  "entity": [
+    ["stone-furnace-big", "stone-furnace"],
+    ["steel-furnace-big", "steel-furnace"],
+    ["electric-furnace-big", "electric-furnace"],
+    ["burner-mining-drill-big", "burner-mining-drill"],
+    ["electric-mining-drill-big", "electric-mining-drill"],
+    ["boiler-big", "boiler"],
+    ["steam-engine-big", "steam-engine"],
+    ["offshore-pump-big", "offshore-pump"],
+    ["pipe-big", "pipe"],
+    ["pipe-to-ground-big", "pipe-to-ground"],
+    ["assembling-machine-1-big", "assembling-machine-1"]
+  ],
+  "item": [
+    ["stone-furnace-big", "stone-furnace"],
+    ["steel-furnace-big", "steel-furnace"],
+    ["electric-furnace-big", "electric-furnace"],
+    ["burner-mining-drill-big", "burner-mining-drill"],
+    ["electric-mining-drill-big", "electric-mining-drill"],
+    ["boiler-big", "boiler"],
+    ["steam-engine-big", "steam-engine"],
+    ["offshore-pump-big", "offshore-pump"],
+    ["pipe-big", "pipe"],
+    ["pipe-to-ground-big", "pipe-to-ground"],
+    ["assembling-machine-1-big", "assembling-machine-1"]
+  ]
+}

@@ -1,21 +1,13 @@
 require("utils.scale")
 
-stoneFurnace = create_big_version("furnace", "stone-furnace")
-steelFurnace = create_big_version("furnace", "steel-furnace")
-electricFurnace = create_big_version("furnace", "electric-furnace")
+local stoneFurnace = table.deepcopy(data.raw["furnace"]["stone-furnace"])
+scale_entity(stoneFurnace)
 
-stoneFurnace.next_upgrade = "steel-furnace-big"
+local steelFurnace = table.deepcopy(data.raw["furnace"]["steel-furnace"])
+scale_entity(steelFurnace)
 
-table.insert(data.raw.technology["advanced-material-processing"].effects, {
-    type = "unlock-recipe",
-    recipe = "steel-furnace-big",
-})
-
-table.insert(data.raw.technology["advanced-material-processing-2"].effects, {
-    type = "unlock-recipe",
-    recipe = "electric-furnace-big",
-})
-
+local electricFurnace = table.deepcopy(data.raw["furnace"]["electric-furnace"])
+scale_entity(electricFurnace)
 
 data:extend{
     stoneFurnace,

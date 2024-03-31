@@ -16,11 +16,7 @@ function scale_size(entity, size_factor, speed_factor)
     adjust_visuals(entity, size_factor, 1 / speed_factor)
 end
 
-function create_big_version(group, name)
-    replace_entity_with_big(group, name)
-    local entity = table.deepcopy(data.raw[group][name .. "-big"])
-
-    entity.fast_replaceable_group = entity.fast_replaceable_group .. "-big"
+function scale_entity(entity)
     scale_size(entity, SIZE_FACTOR, SPEED_FACTOR)
     entity.crafting_speed = entity.crafting_speed * SPEED_FACTOR
     update_energy_usage(entity, SPEED_FACTOR)

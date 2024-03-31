@@ -66,11 +66,16 @@ function replace_unlocked_recipe(recipeName, newRecipeName)
 end
 
 function replace_entity_with_big(entityType, entityName)
-    local prefix = "-big"
     local copiedEntity = table.deepcopy(data.raw[entityType][entityName])
     copiedEntity.name = copiedEntity.name .. prefix
 
     copiedEntity.minable.result = copiedEntity.name
+
+    copiedEntity.fast_replaceable_group = copiedEntity.fast_replaceable_group .. prefix
+
+    if copiedEntity.next_upgrade then
+        copiedEntity.next_upgrade = copiedEntity.next_upgrade .. prefix
+    end
 
     local originalRecipe = table.deepcopy(data.raw["recipe"][entityName])
     if originalRecipe.normal == nil then
