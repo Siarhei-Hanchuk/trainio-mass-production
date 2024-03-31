@@ -18,13 +18,7 @@ burnerMiner.radius_visualisation_picture = table.deepcopy(data.raw["mining-drill
 
 local burnerMinerRecipe = table.deepcopy(data.raw["recipe"]["burner-mining-drill-big"])
 
-for _, ingredients in pairs({burnerMinerRecipe.normal.ingredients, burnerMinerRecipe.expensive.ingredients}) do
-    for i, ingredient in ipairs(ingredients) do
-        if ingredient[1] == "stone-furnace" then
-            ingredient[1] = "stone-furnace-big"
-        end
-    end
-end
+replace_ingredient_in_recipe(burnerMinerRecipe, "stone-furnace", "stone-furnace-big")
 
 local electricMiner = createBigMiner("electric-mining-drill", BURNER_MINER_PERFORMANCE * 2, 5)
 

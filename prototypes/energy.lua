@@ -24,10 +24,22 @@ offshorePump.fluid_box.height = (offshorePump.fluid_box.height or 2) * 100
 
 boiler.fluid_box.height = (boiler.fluid_box.height or 1) * 100
 
+local boilerRecipe = table.deepcopy(data.raw["recipe"]["boiler-big"])
+local steamEngineRecipe = table.deepcopy(data.raw["recipe"]["steam-engine-big"])
+local offshorePumpRecipe = table.deepcopy(data.raw["recipe"]["offshore-pump-big"])
+local pipeToGroundRecipe = table.deepcopy(data.raw["recipe"]["pipe-to-ground-big"])
+
+replace_ingredient_in_recipe(boilerRecipe, "pipe", "pipe-big")
+replace_ingredient_in_recipe(boilerRecipe, "stone-furnace", "stone-furnace-big")
+replace_ingredient_in_recipe(steamEngineRecipe, "pipe", "pipe-big")
+replace_ingredient_in_recipe(offshorePumpRecipe, "pipe", "pipe-big")
+replace_ingredient_in_recipe(pipeToGroundRecipe, "pipe", "pipe-big")
+
+
 data:extend{
-    boiler,
-    steamEngine,
-    offshorePump,
+    boiler, boilerRecipe,
+    steamEngine, steamEngineRecipe,
+    offshorePump, offshorePumpRecipe,
     pipe,
-    pipeToGround,
+    pipeToGround, pipeToGroundRecipe,
 }

@@ -98,3 +98,20 @@ function replace_entity_with_big(entityType, entityName)
 
     data:extend{copiedEntity, originalRecipe, copiedRecipe, copiedItem}
 end
+
+function replace_ingredient_in_recipe(recipe, oldIngredient, newIngredient)
+    local function replace_ingredient(ingredients)
+        for i, ingredient in ipairs(ingredients) do
+            if ingredient[1] == oldIngredient then
+                ingredient[1] = newIngredient
+            end
+        end
+    end
+
+    if recipe.normal and recipe.expensive then
+        replace_ingredient(recipe.normal.ingredients)
+        replace_ingredient(recipe.expensive.ingredients)
+    else
+        replace_ingredient(recipe.ingredients)
+    end
+end
