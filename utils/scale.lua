@@ -23,3 +23,11 @@ function scale_entity(entity)
 
     return entity
 end
+
+function scale_entity_lab(entity)
+    scale_size(entity, SIZE_FACTOR, SPEED_FACTOR)
+    entity.researching_speed = entity.researching_speed * SPEED_FACTOR
+    update_energy_usage(entity, SPEED_FACTOR)
+
+    return entity
+end
